@@ -31,18 +31,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						    	<li ><a href="<?php echo site_url('home/informasi'); ?>">Staff</a>
 								</li>
                                  <li class="<?php if(isset($menupendaftaran)) echo $menupendaftaran;?>"><a href="<?php echo site_url('pendaftaran'); ?>">Penerimaan Siswa  Baru (PSB)</a></li>
-						    	<li><a href="<?php echo site_url('home/contact'); ?>">Contact</a></li>
+						    	<li class="<?php if(isset($menucontact)) echo $menucontact;?>"><a href="<?php echo site_url('home/contact'); ?>">Contact</a></li>
 						    	<div class="clear"></div>
 			     			</ul>
 				     	</div>
-				     	<ul class="follow_icon">
-							<li>
-							<a href="<?php echo site_url('Login'); ?>">
-								<i class="fa fa-user"></i>
-								<span>Login</span>
-							</a>
-							</li>
-						</ul>
+				     	
 		     			<div class="clear"></div>
 		     	</div>
 			     <div class="header-bottom">

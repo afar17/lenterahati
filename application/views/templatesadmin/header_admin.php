@@ -29,6 +29,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" href="<?php echo base_url('assetsadmin/ui-lightness/jquery-ui.css'); ?>">
 <link rel="stylesheet" href="<?php echo base_url('assetsadmin/ui-lightness/jquery.ui.theme.css'); ?>">
 <link rel="stylesheet" href="<?php echo base_url('assetsadmin/css/sweetalert2.css'); ?>">
+<link rel="stylesheet" href="<?php echo base_url('assets/css/toastr.min.css'); ?>">
 <!-- //calendar -->
 <!-- //font-awesome icons -->
 <script src="<?php echo base_url("assetsadmin/js/jquery2.0.3.min.js"); ?>"></script>
@@ -60,10 +61,67 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         
         <!-- settings end -->
         <!-- inbox dropdown start-->
+        <li id="header_notification_bar" class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+                <i class="fa fa-users"></i>
+                <span class="badge bg-info" id="jumlahNotif">3</span>
+            </a>
+            <ul class="dropdown-menu extended inbox">
+                <li>
+                    <a href="#">
+                        <span class="photo"><img alt="avatar" src="images/3.png"></span>
+                                <span class="subject">
+                                <span class="from">Jonathan Smith</span>
+                                <span class="time">Just now</span>
+                                </span>
+                                <span class="message">
+                                    Hello, this is an example msg.
+                                </span>
+                    </a>
+                </li>
+            </ul>
+        </li>
         
         <!-- inbox dropdown end -->
-        <!-- notification dropdown start-->
-      
+       <!-- notification dropdown start-->
+        <li id="header_notification_bar" class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+                <i class="fa fa-envelope-o"></i>
+                <span class="badge bg-warning" id="jumlahNotif">3</span>
+            </a>
+            <ul class="dropdown-menu extended notification">
+                <li>
+                    <p>Pesan Masuk</p>
+                </li>
+                <li>
+                    <div class="alert alert-info clearfix">
+                        <span class="alert-icon"><i class="fa fa-bolt"></i></span>
+                        <div class="noti-info">
+                            <a href="#"> Server #1 overloaded.</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="alert alert-danger clearfix">
+                        <span class="alert-icon"><i class="fa fa-bolt"></i></span>
+                        <div class="noti-info">
+                            <a href="#"> Server #2 overloaded.</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="alert alert-success clearfix">
+                        <span class="alert-icon"><i class="fa fa-bolt"></i></span>
+                        <div class="noti-info">
+                            <a href="#"> Server #3 overloaded.</a>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </li>
         <!-- notification dropdown end -->
     </ul>
     <!--  notification end -->

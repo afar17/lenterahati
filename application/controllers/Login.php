@@ -9,9 +9,7 @@ class Login extends CI_Controller {
 	}
 	
 	public function index(){
-		if($this->session->userdata('isLogin') ==true){
-			redirect('Home');
-		}
+		
 		$this->load->view('halaman/login');
 	}
 	public function proses(){
@@ -48,6 +46,7 @@ class Login extends CI_Controller {
 	}
 	
 	public function signout(){
+		$this->session->unset_userdata('isLogin');
 		$this->session->sess_destroy();
 		$this->session->set_flashdata('success','Terimakasih atas perhatiannya.');
 		redirect(site_url("login"));

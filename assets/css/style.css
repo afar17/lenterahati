@@ -624,6 +624,22 @@ p.link1 {
 	-o-box-shadow: inset 0px 0px 3px #999;
 	-webkit-appearance:none;
 }
+.contact-form input[type="email"],.contact-form textarea{
+	padding:8px;
+	display:block;
+	width:98%;
+	background:#fcfcfc;
+	border: none;
+	outline:none;
+	color:#464646;
+	font-size:0.8125em;
+	font-family:Arial, Helvetica, sans-serif;
+	box-shadow: inset 0px 0px 3px #999;
+	-webkit-box-shadow: inset 0px 0px 3px #999;
+	-moz-box-shadow: inset 0px 0px 3px #999;
+	-o-box-shadow: inset 0px 0px 3px #999;
+	-webkit-appearance:none;
+}
 .contact-form textarea{
 	resize:none;
 	height:120px;		

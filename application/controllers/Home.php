@@ -7,37 +7,17 @@ class Home extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Infomodel');
 		$this->load->model('pendaftaran_model');
+		$this->load->model('Contact_model');
 	}
 
 	public function index()
 	{
 		$data['menuhome']='active';
+		
 		$this->template->full('halaman/dashboard',$data);
 	}
 
-	public function process(){
-	  $this->load->view('vendor/autoload.php');
-
-	  $options = array(
-	    'cluster' => 'mt1',
-	    'useTLS' => true
-	  );
-	  $pusher = new Pusher\Pusher(
-	    '6a70096610193504c420',
-	    'da27d05401340a57546e',
-	    '407698',
-	    $options
-	  );	
-
-	  $data['message'] = 'hello world';
-	  $pusher->trigger('my-channel', 'my-event', $data);
-	}
 	
-	public function cetak($id){
-		$data['peserta']= $this->pendaftaran_model->cetakId($id);
-		$this->template->isi('halaman/cetakbiodata',$data);
-		// print_r ($data);
-	}
 	
 	public function profilesmp(){
 		$this->template->isi('halaman/profil/profil_smpit');
@@ -63,9 +43,32 @@ class Home extends CI_Controller {
         public function galeri(){
 		$this->template->isi('halaman/galeri');
 	}
-        public function contact(){
-		$this->template->isi('halaman/contact');
+    public function contact(){
+		$data['menucontact'] = 'active';	
+		$this->template->isi('halaman/contact',$data);
 	}
+	
+	public function simpancontact(){
+		$this->Contact_model->save();
+		
+		$this->load->view('vendor/autoload.php');
+		
+		$options = array(
+			'cluster' => 'mt1',
+			'useTLS' => true
+		);
+		
+		  $pusher = new Pusher\Pusher(
+			'c4aa79921b531bda044b',
+			'99daae6c88fb2984992c',
+			'630281',
+			$options
+		  );
+		  $data['name'] = $this->input->post('nama');
+		  $data['message'] = $this->input->post('isipesan');
+		  $pusher->trigger('my-channel', 'my-event', $data);
+	}
+
         
     public function infodetail($id) {
 		$data['row']=$this->Infomodel->getId($id);

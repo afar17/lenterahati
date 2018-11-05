@@ -3,23 +3,23 @@
 			    <div class="section group">
 				<div class="col span_2_of_3">
 				  <div class="contact-form">
-				  	<h3>Contact Us</h3>
-					    <form>
+				  	<h3>Hubungi Kami</h3>
+					    <form method="post" action="<?php echo site_url('Home/simpancontact'); ?>" id="FormContact">
 					    	<div>
-						    	<span><label>Name</label></span>
-						    	<span><input  type="text" class="textbox"></span>
+						    	<span><label>Nama</label></span>
+						    	<span><input name="nama"  type="text" class="textbox" required></span>
 						    </div>
 						    <div>
 						    	<span><label>E-Mail</label></span>
-						    	<span><input  type="text" class="textbox"></span>
+						    	<span><input name="email"  type="email" class="textbox"></span>
 						    </div>
 						  
 						    <div>
-						    	<span><label>Subject</label></span>
-						    	<span><textarea > </textarea></span>
+						    	<span><label>Isi Pesan</label></span>
+						    	<span><textarea name="isipesan"> </textarea></span>
 						    </div>
 						   <div>
-						   		<span><input type="submit" value="Submit"></span>
+						   		<span><input type="submit" name="save" value="Kirim"></span>
 						  </div>
 					    </form>
 				  </div>
@@ -27,8 +27,8 @@
 				<div class="col span_1_of_3">
 					
       			<div class="company_address">
-				     	<h3>Address</h3>
-						    	<p>500 Lorem Ipsum Dolor Sit,</p>
+				     	<h3>Alamat</h3>
+						    	<p>Jl. Perkebunan Swapen,</p>
 						   		<p>22-56-2-9 Sit Amet, Lorem,</p>
 						   		<p>USA</p>
 				   		<p>Phone:(00) 222 666 444</p>
@@ -44,4 +44,6 @@
 							  </div>
 				</div>
 			</div>
-</div>
+<script type="text/javascript">
+ 
+</script>

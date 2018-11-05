@@ -19,6 +19,7 @@
 <script src="<?php echo base_url('assetsadmin/js/jquery-ui.min.js'); ?>"></script>
 <script src="<?php echo base_url("assetsadmin/js/raphael-min.js"); ?>"></script>
 <script src="<?php echo base_url("assetsadmin/js/sweetalert2.all.js"); ?>"></script>
+<script src="<?php echo base_url("assets/js/toastr.min.js"); ?>"></script>
 <!-- morris JavaScript -->	
 <script>
 	$(document).ready(function() {
@@ -100,13 +101,38 @@
 			
 		}));
 		//akhir fungsi upload gambar
+		
+		
 	});
+	//MEMBUAT INPUT AUDIO
+	$('<audio id="chatAudio"><source src="<?php echo base_url('assets/audio/notifikasi.ogg'); ?>" type="audio/ogg"><source src="<?php echo base_url('assets/audio/notifikasi.mp3'); ?>" type="audio/mpeg"><source src="<?php echo base_url('assets/audio/notifikasi.wav'); ?>" type="audio/wav"></audio>').appendTo('body');
 	
+	Pusher.logToConsole = true;
+	
+    var pusher = new Pusher('c4aa79921b531bda044b', {
+      cluster: 'mt1',
+      forceTLS: true
+    });
+	var jumlah =0;
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+     // $("#hasil").append("<li class='media'>"+data.name+" : "+data.message+"</li>");
+	 toastr.options = {
+			  "debug": false,
+			  "positionClass": "toast-bottom-right",
+			  "onclick": null,
+			  "fadeIn": 300,
+			  "fadeOut": 1000,
+			  "timeOut": 5000,
+			  "extendedTimeOut": 1000
+			}
+	  toastr.info('Pesan Baru Dari '+data.name+" : "+ data.message + 'Success Alert', {timeOut: 5000});
+	  $('#chatAudio')[0].play();
+	  $("#jumlahNotif").html(jumlah=jumlah+1);
+    });
 	</script>
 	<script>
-		// Replace the <textarea id="editor1"> with a CKEditor
-		// instance, using default configuration.
-		// CKEDITOR.replace( 'editor1' );
+		 
 	</script>
 <!-- calendar -->
 	<script type="text/javascript" src="<?php echo base_url("assetsadmin/js/monthly.js"); ?>"></script>
@@ -115,6 +141,7 @@
 			$("#tanggal").datepicker({
 				dateFormat:"dd/mm/yy"
 			});
+			
 		});
 	</script>
 	<!-- //calendar -->

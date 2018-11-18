@@ -65,7 +65,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 
                 <i class="fa fa-users"></i>
-                <span class="badge bg-info" id="jumlahNotif">3</span>
+                <span class="badge bg-info"></span>
             </a>
             <ul class="dropdown-menu extended inbox">
                 <li>
@@ -89,7 +89,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 
                 <i class="fa fa-envelope-o"></i>
-                <span class="badge bg-warning" id="jumlahNotif">3</span>
+                <span class="badge bg-warning" id="jumlahNotif"><?php if($jumlahkomentar !=0) echo $jumlahkomentar; ?></span>
             </a>
             <ul class="dropdown-menu extended notification">
                 <li>

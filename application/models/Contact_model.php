@@ -22,9 +22,18 @@ class Contact_model extends CI_Model {
 		
 		$data = array("namapengunjung"=>$nama,
 					  "emailpengunjung"=>$email,
-					  "isikomentar"=>$isipesan);
+					  "isikomentar"=>$isipesan,
+					  "statusdibaca"=>"belum");
 		
 		$this->db->insert('komentarpengunjung',$data);
+	}
+	
+	function CountBelum(){
+		$this->db->where('statusdibaca','belum');
+		$this->db->from('komentarpengunjung');
+		$data = $this->db->get();
+		
+		return $data->num_rows();
 	}
 }
 

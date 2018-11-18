@@ -113,7 +113,7 @@
       cluster: 'mt1',
       forceTLS: true
     });
-	var jumlah =0;
+	var jumlah =<?php echo $jumlahkomentar; ?>;
     var channel = pusher.subscribe('my-channel');
     channel.bind('my-event', function(data) {
      // $("#hasil").append("<li class='media'>"+data.name+" : "+data.message+"</li>");

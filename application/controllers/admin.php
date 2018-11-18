@@ -9,11 +9,13 @@ class Admin extends CI_Controller {
 			redirect('Home');
 		}
 		$this->load->model('Auth_model');
+		$this->load->model('Contact_model');
 	}
 	
 	public function index()
 	{
-		$this->template->admin('admin/dashboard');
+		$data['jumlahkomentar'] = $this->Contact_model->CountBelum();
+		$this->template->admin('admin/dashboard',$data);
 	}
         public function dashboard(){
 			$this->template->admin('admin/dashboard');

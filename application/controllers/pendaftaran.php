@@ -62,6 +62,40 @@ class Pendaftaran extends CI_Controller {
 		
 		redirect('pendaftaran/index');
 	}
+
+	public function lihattk(){
+
+		$this->template->isi('halaman/psb/pendaftarantk');
+	}
+
+	public function list_tk()
+    {
+        $list = $this->pendaftaran_model->get_datatables();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $daftar) {
+            $no++;
+            $row = array();
+            $row[] = $no;
+ 			$row[] = $daftar->nm_lengkap;
+ 			$row[] = $daftar->nm_panggilan;
+ 			$row[] = $daftar->nm_ayah;
+ 			$row[] = $daftar->nm_ibu;
+
+
+            $data[] = $row;
+        }
+ 
+        $output = array(
+                        "draw" => $_POST['draw'],
+                        "recordsTotal" => $this->pendaftaran_model->count_all(),
+                        "recordsFiltered" => $this->pendaftaran_model->count_filtered(),
+                        "data" => $data,
+                );
+        //output to json format
+        echo json_encode($output);
+    }
+ 
 	
 	
 }

@@ -33,21 +33,31 @@
 			<a href="<?php echo site_url('pendaftaran/formdaftar/smpit'); ?>">
 			<button class='btn btn-primary'><i class='fa fa-plus'></i> Daftar SMPIT</button>
 			</a>
-			
-			<div class="col-md-5">
-			<table class='table'>
+			<br><br>
+			<div class="col-md-8">
+			<table class='table table-striped'>
 				<thead>
 					<tr>
 						<th>Nomor</th>
-						<th>Nama</th>
-						<th>Kelas</th>
+						<th>Sekolah</th>
+						<th vlign="center">Jumlah Pendaftar</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td>1</td>
-						<td>Daftar TKIT</td>
-						<td>20</td>
+						<td><a href="<?php echo site_url('pendaftaran/lihattk'); ?>" target="_blank">TK IT</a></td>
+						<td><center><?php echo $this->bantuan->cekkuotatk(); ?></center></td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td><a href="<?php echo site_url('pendaftaran/lihatsd'); ?>" target="_blank">SD IT</a></td>
+						<td><center><?php echo $this->bantuan->cekkuotasd(); ?></center></td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td><a href="<?php echo site_url('pendaftaran/lihatsmp'); ?>" target="_blank">SMP IT</a></td>
+						<td><center><?php echo $this->bantuan->cekkuotasmp(); ?></center></td>
 					</tr>
 				</tbody>
 			</table>

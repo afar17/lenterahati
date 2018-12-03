@@ -17,6 +17,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link rel="stylesheet" href="<?php echo base_url('assetsadmin/ui-lightness/jquery-ui.css');?>" />
 
 <link rel="stylesheet" href="<?php echo base_url('assetsadmin/ui-lightness/jquery.ui.theme.css'); ?>">
+ <link href="<?php echo base_url('assets/css/jquery.dataTables.min.css')?>" rel="stylesheet">
+<style>
+	a:hover{text-decoration: none;}
+</style>
 </head>
 <body>
 <div class="header-bg">

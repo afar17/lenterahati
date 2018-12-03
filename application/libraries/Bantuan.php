@@ -26,5 +26,25 @@ class Bantuan {
 		
 		return $data;
 	}
+	public function cekkuotasd(){
+		//ambil tahun sekarang
+		$tahun = explode('-',date('Y-m-d'),4);
+		$this->CI->db->where("YEAR(tgl_pendaftaran)",$tahun[0]);
+		$this->CI->db->where("sekolah_kodesekolah","SDIT");
+		$this->CI->db->from('pendaftaran');
+		$data = $this->CI->db->count_all_results();
+		
+		return $data;
+	}
+	public function cekkuotasmp(){
+		//ambil tahun sekarang
+		$tahun = explode('-',date('Y-m-d'),4);
+		$this->CI->db->where("YEAR(tgl_pendaftaran)",$tahun[0]);
+		$this->CI->db->where("sekolah_kodesekolah","SMPIT");
+		$this->CI->db->from('pendaftaran');
+		$data = $this->CI->db->count_all_results();
+		
+		return $data;
+	}
 }
 ?>

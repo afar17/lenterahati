@@ -4,7 +4,7 @@
 </div>
 <div class="wrap">
 	<div class="copy-right">
-		<p>© 2018 Lentera Hati | Design by <a href="http://w3layouts.com/"> W3layouts</a></p>
+		<p>© 2018 Lentera Hati | Design by <a href="http://w3layouts.com/">Nasa UI Designer!</a></p>
 	</div>
 </div>
 </div>
@@ -14,6 +14,8 @@
 	<script src="<?php echo base_url('assets/js/jquery.PrintArea.js');?>"></script>
 	<script src="<?php echo base_url('assets/js/html2canvas.js');?>"></script>
 	<script src="<?php echo base_url("assetsadmin/js/sweetalert2.all.js"); ?>"></script>
+	<script src="<?php echo base_url('assets/js/jquery.dataTables.min.js')?>"></script>
+ 
 	<script type="text/javascript">
 		$(window).load( function() {
 			$("#tanggal").datepicker({
@@ -70,7 +72,38 @@
 	  });
   });
 		<?php } ?>
+
 		});
 	</script>
+	<script type="text/javascript">
+ 
+ 
+$(document).ready(function() {
+ 
+    //datatables
+    table = $('#table').DataTable({ 
+ 
+        "processing": true, //Feature control the processing indicator.
+        "serverSide": true, //Feature control DataTables' server-side processing mode.
+        "order": [], //Initial no order.
+ 
+        // Load data for the table's content from an Ajax source
+        "ajax": {
+            "url": "<?php echo site_url('pendaftaran/list_tk')?>",
+            "type": "POST"
+        },
+ 
+        //Set column definition initialisation properties.
+        "columnDefs": [
+        { 
+            "targets": [ 0 ], //first column / numbering column
+            "orderable": false, //set not orderable
+        },
+        ],
+ 
+    });
+ 
+});
+</script>
 </body>
 </html>

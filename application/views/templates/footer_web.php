@@ -73,14 +73,12 @@
   });
 		<?php } ?>
 
-		});
-	</script>
-	<script type="text/javascript">
- 
- 
-$(document).ready(function() {
- 
-    //datatables
+		<?php if(isset($menuPendaftaran)) { 
+			$this->load->view("admin/psb/pendaftar.js");
+		} ?>
+
+		<?php if(isset($urlAjax)) { ?>
+			//datatables
     table = $('#table').DataTable({ 
  
         "processing": true, //Feature control the processing indicator.
@@ -89,7 +87,7 @@ $(document).ready(function() {
  
         // Load data for the table's content from an Ajax source
         "ajax": {
-            "url": "<?php echo site_url('pendaftaran/list_tk')?>",
+            "url": "<?php echo $urlAjax ; ?>",
             "type": "POST"
         },
  
@@ -102,8 +100,10 @@ $(document).ready(function() {
         ],
  
     });
- 
+		<?php } ?>
+
+		});
+	</script>
 });
-</script>
 </body>
 </html>

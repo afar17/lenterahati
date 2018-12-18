@@ -89,7 +89,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 
                 <i class="fa fa-envelope-o"></i>
-                <span class="badge bg-warning" id="jumlahNotif"><?php if($jumlahkomentar !=0) echo $jumlahkomentar; ?></span>
+                <span class="badge bg-warning" id="jumlahNotif">
+                    <?php 
+                    $jumlahkomentar = $this->bantuan->jumlahkomentar();
+                    if($jumlahkomentar !=0) echo $jumlahkomentar; 
+                    ?>
+                        
+                </span>
             </a>
             <ul class="dropdown-menu extended notification">
                 <li>
@@ -184,7 +190,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Penerimaan Siswa Baru (PSB)</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="<?php echo site_url('admin/pendaftar'); ?>">Laporan Pendaftar</a></li>
+                        <li><a href="<?php echo site_url('admin/pendaftar'); ?>">LPendaftar</a></li>
                         <li><a href="<?php echo site_url('admin/pengumuman'); ?>">Pengumuman</a></li>
                     </ul>
                 </li>

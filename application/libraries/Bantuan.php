@@ -46,5 +46,13 @@ class Bantuan {
 		
 		return $data;
 	}
+
+	function jumlahkomentar(){
+		$this->CI->db->where('statusdibaca','belum');
+		$this->CI->db->from('komentarpengunjung');
+		$data = $this->CI->db->get();
+		
+		return $data->num_rows();
+	}
 }
 ?>

@@ -27,11 +27,11 @@ class Pendaftaran extends CI_Controller {
 	}
 	public function formdaftar($id=null)
 	{
-		if($id == "tkit") {
+		if($id == "tkit" or $id=="TKIT") {
 			$data['sekolah'] = "TKIT";
 			$data['judulform']= "TK-IT";
 		}
-		else if($id ="sdit"){
+		else if($id =="sdit" OR $id=="SDIT"){
 			$data['sekolah'] = "SDIT";
 			$data['judulform']= "SD-IT";
 		}
@@ -39,13 +39,36 @@ class Pendaftaran extends CI_Controller {
 			$data['sekolah'] = "SMPIT";
 			$data['judulform']= "SMP-IT";
 		}
+		$data['menuPendaftaran']= 'active';
 		$this->template->isi('halaman/psb/formpendaftaran',$data);
 	}
 	
 	public function save(){
 		$id = $this->pendaftaran_model->save();
-		$this->session->set_flashdata('success',"Data Berhasil Disimpan! <a href='".site_url('home/cetak/'.$id)."' target='blank'><button class='btn btn-info'><i class='fa fa-print'></i> Print</button></a>");
-		redirect('pendaftaran/formdaftar');
+		$kodesekolah  = $this->input->post('kodesekolah');
+        
+        $this->load->view('vendor/autoload.php');
+		
+		$options = array(
+			'cluster' => 'mt1',
+			'useTLS' => true
+		);
+		
+		  $pusher = new Pusher\Pusher(
+			'0d6441fb549705e4a440',
+			'e9a790ca2e8f1d487173',
+			'630281',
+			$options
+		  );
+		  $data['name'] =  $this->input->post('nm_lengkap');
+		  $data['alamat'] = $this->input->post('alamat');
+		  if($this->input->post('tanggallahir')!=""){
+		  	$data['tgl_lahir'] = $this->input->post('tanggallahir');
+		  }
+		  else {
+		  	$data['tgl_lahir']="tidak-ada";
+		  }
+		  $pusher->trigger('my-channel-pendaftaran', 'my-event-pendaftaran', $data);
 	}
 	
 	public function edit($id){
@@ -64,13 +87,13 @@ class Pendaftaran extends CI_Controller {
 	}
 
 	public function lihattk(){
-
-		$this->template->isi('halaman/psb/pendaftarantk');
+		$data['urlAjax'] =  site_url('pendaftaran/list_tk');
+		$this->template->isi('halaman/psb/pendaftarantk',$data);
 	}
 
 	public function list_tk()
     {
-        $list = $this->pendaftaran_model->get_datatables();
+        $list = $this->pendaftaran_model->get_datatables('TKIT');
         $data = array();
         $no = $_POST['start'];
         foreach ($list as $daftar) {
@@ -88,14 +111,81 @@ class Pendaftaran extends CI_Controller {
  
         $output = array(
                         "draw" => $_POST['draw'],
-                        "recordsTotal" => $this->pendaftaran_model->count_all(),
-                        "recordsFiltered" => $this->pendaftaran_model->count_filtered(),
+                        "recordsTotal" => $this->pendaftaran_model->count_all("TKIT"),
+                        "recordsFiltered" => $this->pendaftaran_model->count_filtered("TKIT"),
                         "data" => $data,
                 );
         //output to json format
         echo json_encode($output);
     }
+ 	
+
+    public function lihatsd(){
+    	$data['urlAjax'] =  site_url('pendaftaran/list_sd');
+    	$this->template->isi('halaman/psb/pendaftaransd',$data);
+	}
+
+	public function list_sd()
+    {
+        $list = $this->pendaftaran_model->get_datatables("SDIT");
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $daftar) {
+            $no++;
+            $row = array();
+            $row[] = $no;
+ 			$row[] = $daftar->nm_lengkap;
+ 			$row[] = $daftar->nm_panggilan;
+ 			$row[] = $daftar->nm_ayah;
+ 			$row[] = $daftar->nm_ibu;
+
+
+            $data[] = $row;
+        }
  
+        $output = array(
+                        "draw" => $_POST['draw'],
+                        "recordsTotal" => $this->pendaftaran_model->count_all("SDIT"),
+                        "recordsFiltered" => $this->pendaftaran_model->count_filtered("SDIT"),
+                        "data" => $data,
+                );
+        //output to json format
+        echo json_encode($output);
+    }
+
+    public function lihatsmp(){
+    	$data['urlAjax'] =  site_url('pendaftaran/list_smp');
+		$this->template->isi('halaman/psb/pendaftaransmp',$data);
+	}
+
+	public function list_smp()
+    {
+        $list = $this->pendaftaran_model->get_datatables("SMPIT");
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $daftar) {
+            $no++;
+            $row = array();
+            $row[] = $no;
+ 			$row[] = $daftar->nm_lengkap;
+ 			$row[] = $daftar->nm_panggilan;
+ 			$row[] = $daftar->nm_ayah;
+ 			$row[] = $daftar->nm_ibu;
+
+
+            $data[] = $row;
+        }
+ 
+        $output = array(
+                        "draw" => $_POST['draw'],
+                        "recordsTotal" => $this->pendaftaran_model->count_all("SMPIT"),
+                        "recordsFiltered" => $this->pendaftaran_model->count_filtered("SMPIT"),
+                        "data" => $data,
+                );
+        //output to json format
+        echo json_encode($output);
+    }
+
 	
 	
 }

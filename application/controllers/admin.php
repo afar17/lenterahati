@@ -14,26 +14,15 @@ class Admin extends CI_Controller {
 	
 	public function index()
 	{
-		$data['jumlahkomentar'] = $this->Contact_model->CountBelum();
+		
 		$this->template->admin('admin/dashboard',$data);
 	}
-        public function dashboard(){
-			$this->template->admin('admin/dashboard');
+    
+    public function dashboard(){
+		$this->template->admin('admin/dashboard');
 	}
 
-	public function data_user(){
-			$this->template->admin('admin/data_user');
-	}
-        public function galeri(){
-			$this->template->admin('admin/galeri');
-	}
-        public function informasi(){
-			$this->template->admin('admin/informasi');
-	}
-        public function pendaftar(){
-			$this->template->admin('admin/pendaftar');
-	}
-        public function pengumuman(){
-			$this->template->admin('admin/pengumuman');
+	public function pendaftar() {
+		$this->template->admin('admin/psb/pendaftar');
 	}
 }

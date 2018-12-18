@@ -11,9 +11,9 @@
 		<div class="position-center">
 		
 		<?php if(isset($edit)){?>
-			<form method="post" role="form" action="<?php echo site_url("pendaftaran/update"); ?>">
+			<form method="post" id="FormPendaftaran" role="form" action="<?php echo site_url("pendaftaran/update"); ?>">
 		<?php } else { ?>
-			<form method="post" role="form" action="<?php echo site_url("pendaftaran/save"); ?>">
+			<form method="post" id="FormPendaftaran"  action="<?php echo site_url("pendaftaran/save"); ?>">
 		<?php } ?>
 		
 		<div class="form-group">
@@ -25,12 +25,15 @@
 		</tr>
         <tr>
 			<td width="120">Nama Panggilan</td>
-			<td><input type="text" class="form-control" name="nm_penggilan" placeholder="nama panggilan"></td>
+			<td><input type="text" class="form-control" name="nm_panggilan" placeholder="nama panggilan"></td>
 		</tr>
+		<?php if($sekolah !="TKIT"){ ?>
         <tr>
+
 			<td width="120">NIK</td>
 			<td><input type="text" class="form-control" name="nik" placeholder="nik"></td>
 		</tr>
+		<?php } ?>
         <tr>
 			<td>Jenis Kelamin</td>
 			<td>
@@ -42,7 +45,7 @@
 			</td>
         </tr>
 		<tr>
-			<td width="120">Tempat</td>
+			<td width="120">Tempat Lahir</td>
 			<td><input type="text" class="form-control" name="harga" placeholder="tempat"></td>
 		</tr>
 		<tr>
@@ -76,60 +79,60 @@
 		</tr>
 		<tr>
 			<td width="120">Anak Ke</td>
-			<td><input type="text" class="form-control" name="harga" placeholder="anak ke"></td>
+			<td><input type="text" class="form-control" name="anak_ke" placeholder="anak ke"></td>
 		</tr>
 		<tr>
 			<td width="120">Jumlah Saudara Kandung</td>
-			<td><input type="text" class="form-control" name="harga" placeholder="jumlah saudara kandung"></td>
+			<td><input type="text" class="form-control" name="jumlah_saudara_kandung" placeholder="jumlah saudara kandung"></td>
 		</tr>
 		<tr>
 			<td width="120">Jumlah Saudara Angkat</td>
-			<td><input type="text" class="form-control" name="harga" placeholder="jumlah saudara angkat"></td>
+			<td><input type="text" class="form-control" name="jumlah_saudara_angkat" placeholder="jumlah saudara angkat"></td>
 		</tr>
 		<tr>
 			<td width="120">Jumlah Saudara Tiri</td>
-			<td><input type="text" class="form-control" name="harga" placeholder="jumlah saudara tiri"></td>
+			<td><input type="text" class="form-control" name="jumlah_saudara_tiri" placeholder="jumlah saudara tiri"></td>
 		</tr>
 		<tr>
 			<td width="120">Status Anak</td>
 			<td>
-            <div class="radio"><label><input type="radio"  name="status anak" value="anak_kandung"> &nbsp;Anak Kandung</label></div>
-            <div class="radio"><label><input type="radio" name="status anak" value="anak_tiri"> &nbsp;Anak Tiri</label></div>
-            <div class="radio"><label><input type="radio" name="status anak" value="anak_angkat"> &nbsp;Anak Angkat</label></div>
+            <div class="radio"><label><input type="radio"  name="status_anak" value="anak_kandung"> &nbsp;Anak Kandung</label></div>
+            <div class="radio"><label><input type="radio" name="status_anak" value="anak_tiri"> &nbsp;Anak Tiri</label></div>
+            <div class="radio"><label><input type="radio" name="status_anak" value="anak_angkat"> &nbsp;Anak Angkat</label></div>
 			</td>
 		</tr>
 		<tr>
 			<td width="120">Golongan Darah</td>
 			<td>
-            <div class="radio"><label><input type="radio"  name="gol darah" value="A"> &nbsp;A</label></div>
-            <div class="radio"><label><input type="radio" name="gol darah" value="B"> &nbsp;B</label></div>
-            <div class="radio"><label><input type="radio" name="gol darah" value="AB"> &nbsp;AB</label></div>
-            <div class="radio"><label><input type="radio" name="gol darah" value="O"> &nbsp;O</label></div>
+            <div class="radio"><label><input type="radio"  name="goldarah" value="A"> &nbsp;A</label></div>
+            <div class="radio"><label><input type="radio" name="goldarah" value="B"> &nbsp;B</label></div>
+            <div class="radio"><label><input type="radio" name="goldarah" value="AB"> &nbsp;AB</label></div>
+            <div class="radio"><label><input type="radio" name="goldarah" value="O"> &nbsp;O</label></div>
 			</td>
 		</tr>
     <tr><td width="120">Berat badan</td>
-        <td><input type="text" class="form-control" name="harga" placeholder="berat badan">
+        <td><input type="text" class="form-control" name="berat_badan" placeholder="berat badan">
        </td></tr>
     <tr><td width="120">Imunisasi Yang Diterima</td>
-        <td><input type="text" class="form-control" name="harga" placeholder="imunisasi yang diterima">
+        <td><input type="text" class="form-control" name="imunisasi_yg_diterima" placeholder="imunisasi yang diterima">
        </td></tr>
     <tr><td width="120">Jarak Rumah Ke Sekolah</td>
-        <td><input type="text" class="form-control" name="harga" placeholder="jarak rumahke sekolah">
+        <td><input type="text" class="form-control" name="jarak_rumah_kesekolah" placeholder="jarak rumahke sekolah">
        </td></tr>
     <tr><td width="120">Ukuran Baju</td>
         <td>
-            <div class="radio"><label><input type="radio"  name="uk baju" value="S"> &nbsp;S</label></div>
-            <div class="radio"><label><input type="radio" name="uk baju" value="M"> &nbsp;M</label></div>
-            <div class="radio"><label><input type="radio" name="uk baju" value="L"> &nbsp;L</label></div>
-            <div class="radio"><label><input type="radio" name="uk baju" value="XL"> &nbsp;XL</label></div>
-            <div class="radio"><label><input type="radio" name="uk baju" value="XXL"> &nbsp;XXL</label></div>
+            <div class="radio"><label><input type="radio"  name="uk_baju" value="S"> &nbsp;S</label></div>
+            <div class="radio"><label><input type="radio" name="uk_baju" value="M"> &nbsp;M</label></div>
+            <div class="radio"><label><input type="radio" name="uk_baju" value="L"> &nbsp;L</label></div>
+            <div class="radio"><label><input type="radio" name="uk_baju" value="XL"> &nbsp;XL</label></div>
+            <div class="radio"><label><input type="radio" name="uk_baju" value="XXL"> &nbsp;XXL</label></div>
        </td></tr>
 
     <tr><td width="120">Nama Ayah</td>
         <td><input type="text" class="form-control" name="nama_ayah" placeholder="nama lengkap">
        </td></tr>
     <tr><td width="120"> Tempat</td>
-        <td><input type="text" class="form-control" name="tempat" placeholder="tempat" />
+        <td><input type="text" class="form-control" name="tempat_ayah" placeholder="tempat" />
        </td></tr>
     <tr><td width="120"> Tanggal Lahir Ayah</td>
         <td><input type="text" id="tanggallahirayah" class="form-control" name="tanggallahirayah" />
@@ -163,10 +166,10 @@
 	</tr>
     <tr><td width="120">Pekerjaan</td>
         <td>
-            <input type="text" class="form-control" name="harga" placeholder="pekerjaan">
+            <input type="text" class="form-control" name="pekerjaan_ayah" placeholder="pekerjaan">
        </td></tr>
     <tr><td width="120">No. KTP</td>
-        <td><input type="text" class="form-control" name="harga" placeholder="nomor ktp">
+        <td><input type="text" class="form-control" name="no_ktp_ayah" placeholder="nomor ktp">
        </td></tr>
     <tr><td width="120">Penghasilan Perbulan</td>
         <td>
@@ -179,17 +182,17 @@
        </td>
 	</tr>
     <tr><td width="120">Alamat</td>
-        <td><input type="text" class="form-control" name="harga" placeholder="alamat">
+        <td><input type="text" class="form-control" name="alamat_ayah" placeholder="alamat">
        </td></tr>
     <tr><td width="120">No. Telepon</td>
-        <td><input type="text" class="form-control" name="harga" placeholder="nomor telepon">
+        <td><input type="text" class="form-control" name="no_tlpn_ayah" placeholder="nomor telepon">
        </td></tr>
     
     <tr><td width="120">Nama Ibu</td>
-        <td><input type="text" class="form-control" name="harga" placeholder="Nama Ibu">
+        <td><input type="text" class="form-control" name="nm_ibu" placeholder="Nama Ibu">
        </td></tr>
     <tr><td width="120">Tempat Lahir</td>
-        <td><input type="text" class="form-control" name="harga" placeholder="Tempat Lahir">
+        <td><input type="text" class="form-control" name="tempat_ibu" placeholder="Tempat Lahir">
        </td></tr>
 	<tr><td width="120">Tanggal Lahir Ibu</td>
         <td><input type="text" id="tanggallahiribu" class="form-control" name="tanggallahiribu" /></td>
@@ -222,10 +225,10 @@
        </td>
 	</tr>
     <tr><td width="120">Pekerjaan</td>
-        <td><input type="text" class="form-control" name="harga" placeholder="pekerjaan">
+        <td><input type="text" class="form-control" name="pekerjaan_ibu" placeholder="pekerjaan">
        </td></tr>
     <tr><td width="120">No. KTP</td>
-        <td><input type="text" class="form-control" name="harga" placeholder="nomor ktp">
+        <td><input type="text" class="form-control" name="pekerjaan_ibu" placeholder="nomor ktp">
        </td></tr>
     <tr><td width="120">Penghasilan Perbulan</td>
         <td>
@@ -239,10 +242,10 @@
         </td>
 	</tr>
     <tr><td width="120">Alamat</td>
-        <td><input type="text" class="form-control" name="harga" placeholder="alamat">
+        <td><input type="text" class="form-control" name="alamat_ibu" placeholder="alamat">
        </td></tr>
-    <tr><td width="120">No. Telepon</td>
-        <td><input type="text" class="form-control" name="harga" placeholder="nomor telepon">
+    <tr><td width="120">No. Telepon Ibu</td>
+        <td><input type="text" class="form-control" name="no_tlpn_ibu" placeholder="nomor telepon">
        </td></tr>
     </table>
     </div>
@@ -263,7 +266,6 @@
                             </div>
 
                         </div>
-					    </form>
 				  </div>
         </div>
 	<!-- page end-->

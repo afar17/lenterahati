@@ -200,10 +200,14 @@ ul.sidebar-menu li a.active i {
     -moz-transition:all .3s ease-in-out;
     -o-transition:all .3s ease-in-out;
     transition:all .3s ease-in-out;
+    padding-bottom:30px;
+
 }
 .footer {
     background: #d19a98;
     padding: 20px;
+    position:fixed;
+    bottom:0px;
 }
 .footer p {
     color: #fff;

@@ -18,9 +18,9 @@ class Pendaftaran_model extends CI_Model {
         parent::__construct();
     }
  
-    private function datatables_tk()
+    private function datatables($id)
     {
-         
+        $this->db->where('sekolah_kodesekolah',$id);
         $this->db->from($this->table);
  
         $i = 0;
@@ -57,25 +57,27 @@ class Pendaftaran_model extends CI_Model {
         }
     }
  
-    function get_datatables()
+    function get_datatables($id)
     {
-        $this->datatables_tk();
+        $this->datatables($id);
         if($_POST['length'] != -1)
         $this->db->limit($_POST['length'], $_POST['start']);
         $query = $this->db->get();
         return $query->result();
     }
  
-    function count_filtered()
+    function count_filtered($id)
     {
-        $this->datatables_tk();
+        $this->datatables($id);
         $query = $this->db->get();
         return $query->num_rows();
     }
  
-    public function count_all()
+    public function count_all($id)
     {
+        $this->db->where('sekolah_kodesekolah',$id);
         $this->db->from($this->table);
+
         return $this->db->count_all_results();
     }
 
@@ -114,7 +116,7 @@ class Pendaftaran_model extends CI_Model {
             $jumlah_saudara_angkat    =   $this->input->post('jumlah_saudara_angkat');
             $jumlah_saudara_tiri      =   $this->input->post('jumlah_saudara_tiri');
             $status_anak      =   $this->input->post('status_anak');
-            $gol_darah        =   $this->input->post('gol_darah');
+            $gol_darah        =   $this->input->post('goldarah');
             $berat_badan      =   $this->input->post('berat_badan');
             $imunisasi_yg_diterima    =   $this->input->post('imunisasi_yg_diterima');
             $jarak_rumah_kesekolah    =   $this->input->post('jarak_rumah_kesekolah');
@@ -131,10 +133,10 @@ class Pendaftaran_model extends CI_Model {
             
             $agama_ayah               =   $this->input->post('agamaayah');
             $kewarganegaraan_ayah     =   $this->input->post('kewarganegaraan_ayah');
-            $pendidikan_terakhir_ayah =   $this->input->post('pendidikan_terakhir');
+            $pendidikan_terakhir_ayah =   $this->input->post('pend_terakhir');
             $pekerjaan_ayah           =   $this->input->post('pekerjaan_ayah');
             $no_ktp_ayah              =   $this->input->post('no_ktp_ayah');
-            $penghasilan_perbulan_ayah=   $this->input->post('penghasilan_perbulan_ayah');
+            $penghasilan_perbulan_ayah=   $this->input->post('penghasilan_ayah');
             $alamat_ayah              =   $this->input->post('alamat_ayah');
             $no_tlpn_ayah             =   $this->input->post('no_tlpn_ayah');
             $nm_ibu                   =   $this->input->post('nm_ibu');
@@ -151,11 +153,11 @@ class Pendaftaran_model extends CI_Model {
             
             $agama_ibu                =   $this->input->post('agamaibu');
             $kewarganegaraan_ibu      =   $this->input->post('kewarganegaraan_ibu');
-            $pendidikan_terakhir_ibu  =   $this->input->post('pendidikan_terakhir_ibu');
+            $pendidikan_terakhir_ibu  =   $this->input->post('pend_terakhir_ibu');
             $pekerjaan_ibu            =   $this->input->post('pekerjaan_ibu');
             $no_ktp_ibu               =   $this->input->post('no_ktp_ibu');
-            $penghasilan_perbulan_ibu =   $this->input->post('penghasilan_perbulan_ibu');
-            $alamat_ibu               =   $this->input->post('alamat_ayah');
+            $penghasilan_perbulan_ibu =   $this->input->post('penghasilan_ibu');
+            $alamat_ibu               =   $this->input->post('alamat_ibu');
             $no_tlpn_ibu              =   $this->input->post('no_tlpn_ibu');
             $kodesekolah              =   $this->input->post('kodesekolah');
             

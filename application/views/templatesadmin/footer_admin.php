@@ -109,10 +109,12 @@
 	
 	Pusher.logToConsole = true;
 	
+	//REALTIME-PUSHER UNTUK KIRIMAN DARI CONTACT
     var pusher = new Pusher('c4aa79921b531bda044b', {
       cluster: 'mt1',
       forceTLS: true
     });
+    <?php $jumlahkomentar = $this->bantuan->jumlahkomentar();?>
 	var jumlah =<?php echo $jumlahkomentar; ?>;
     var channel = pusher.subscribe('my-channel');
     channel.bind('my-event', function(data) {
@@ -130,11 +132,31 @@
 	  $('#chatAudio')[0].play();
 	  $("#jumlahNotif").html(jumlah=jumlah+1);
     });
+
+    //REALTIME-PUSHER UNTUK PENDAFTARAN
+    var pusherPendaftaran = new Pusher('0d6441fb549705e4a440', {
+      cluster: 'mt1',
+      forceTLS: true
+    });
+    var channelPendaftaran = pusherPendaftaran.subscribe('my-channel-pendaftaran');
+    channelPendaftaran.bind('my-event-pendaftaran', function(data) {
+     // $("#hasil").append("<li class='media'>"+data.name+" : "+data.message+"</li>");
+	 toastr.options = {
+			  "debug": false,
+			  "positionClass": "toast-bottom-right",
+			  "onclick": null,
+			  "fadeIn": 300,
+			  "fadeOut": 1000,
+			  "timeOut": 5000,
+			  "extendedTimeOut": 1000
+			}
+	  // toastr.info('Pendaftar Baru ', {timeOut: 5000});
+	  $('#chatAudio')[0].play();
+	  $("#hasilpendaftaran tbody").append("<tr><td>1</td><td>"+data.name+"</td><td>"+data.tanggallahir+"<td>"+data.alamat+"</td></tr>");
+    });
 	</script>
-	<script>
-		 
-	</script>
-<!-- calendar -->
+
+	<!-- calendar -->
 	<script type="text/javascript" src="<?php echo base_url("assetsadmin/js/monthly.js"); ?>"></script>
 	<script type="text/javascript">
 		$(window).load( function() {

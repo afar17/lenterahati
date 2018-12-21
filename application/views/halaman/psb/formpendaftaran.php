@@ -68,7 +68,7 @@
 		</tr>
 		<tr>
 			<td width="120">Alamat</td>
-			<td><input type="text" class="form-control" name="harga" placeholder="alamat"></td>
+			<td><input type="text" class="form-control" id="alamat" name="alamat" placeholder="alamat"></td>
 		</tr>
 		<tr>
 			<td width="120">Kewarganegaraan</td>

@@ -44,7 +44,7 @@ class Pendaftaran extends CI_Controller {
 	}
 	
 	public function save(){
-		$id = $this->pendaftaran_model->save();
+		// $id = $this->pendaftaran_model->save();
 		$kodesekolah  = $this->input->post('kodesekolah');
         
         $this->load->view('vendor/autoload.php');
@@ -62,13 +62,28 @@ class Pendaftaran extends CI_Controller {
 		  );
 		  $data['name'] =  $this->input->post('nm_lengkap');
 		  $data['alamat'] = $this->input->post('alamat');
-		  if($this->input->post('tanggallahir')!=""){
-		  	$data['tgl_lahir'] = $this->input->post('tanggallahir');
+		  $kodesekolah =   $this->input->post('kodesekolah');
+
+		  if($this->input->post('tanggallahir')!="") {
+		  	$data['tanggallahir'] = $this->input->post('tanggallahir');
 		  }
 		  else {
-		  	$data['tgl_lahir']="tidak-ada";
+		  	$data['tanggallahir']="tidak-ada";
 		  }
-		  $pusher->trigger('my-channel-pendaftaran', 'my-event-pendaftaran', $data);
+
+		  //buat trigger utk masing2 akun yang login
+		  if($kodesekolah=='TKIT'){
+		  	$pusher->trigger('tk-channel', 'tk-event', $data);
+		  }
+		  else if($kodesekolah=='SDIT'){
+		  	$pusher->trigger('sd-channel', 'sd-event', $data);
+		  }
+		  else {
+		  	$pusher->trigger('smp-channel', 'smp-event', $data);
+		  }
+
+		  $pusher->trigger('admin-channel', 'admin-event', $data);
+		 
 	}
 	
 	public function edit($id){

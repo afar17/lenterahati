@@ -47,7 +47,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--logo start-->
 <div class="brand">
     <a  class="logo">
-        ADMIN YLH
+        <?php 
+        if($this->session->userdata("level")=='operator_tk') echo "TKIT"; 
+        else if($this->session->userdata('level')=='operator_sd') echo "SDIT";
+        else if($this->session->userdata('level')=='operator_smp') echo "SMPIT";
+        else echo "ADMIN YLH";
+        ?>
     </a>
     <div class="sidebar-toggle-box">
         <div class="fa fa-bars"></div>

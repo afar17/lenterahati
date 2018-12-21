@@ -133,13 +133,36 @@
 	  $("#jumlahNotif").html(jumlah=jumlah+1);
     });
 
+
     //REALTIME-PUSHER UNTUK PENDAFTARAN
     var pusherPendaftaran = new Pusher('0d6441fb549705e4a440', {
       cluster: 'mt1',
       forceTLS: true
     });
-    var channelPendaftaran = pusherPendaftaran.subscribe('my-channel-pendaftaran');
-    channelPendaftaran.bind('my-event-pendaftaran', function(data) {
+
+    //script php untuk kondisi channel sesuai level masing2
+    <?php 
+    if($this->session->userdata('level')=='Admin'){
+    	$channel = 'admin-channel';
+    	$event = 'admin-event';
+    }
+    else if($this->session->userdata('level')=='operator_tk') {
+    	$channel = 'tk-channel';
+    	$event = 'tk-event';
+    }
+    else if($this->session->userdata('level')=='operator_sd') {
+    	$channel = 'sd-channel';
+    	$event = 'sd-event';
+    }
+    else {
+    	$channel = 'smp-channel';
+    	$event = 'smp-event';
+    }
+
+    ?>
+
+    var channelPendaftaran = pusherPendaftaran.subscribe('<?php echo $channel; ?>');
+    channelPendaftaran.bind('<?php echo $event ; ?>', function(data) {
      // $("#hasil").append("<li class='media'>"+data.name+" : "+data.message+"</li>");
 	 toastr.options = {
 			  "debug": false,

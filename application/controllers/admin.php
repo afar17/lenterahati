@@ -14,7 +14,7 @@ class Admin extends CI_Controller {
 	
 	public function index()
 	{
-		
+		$data='title';
 		$this->template->admin('admin/dashboard',$data);
 	}
     
